@@ -1,13 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 import { Project } from '../../shared/Project';
-import { ProjectService } from 'src/app/shared/services/project.service';
+import { ProjectService } from '../../shared/services/project.service';
 
 @Component({
     selector: 'ngptt-project-list',
     templateUrl: './project-list.component.html'
 })
-export class ProjectListComponent implements OnInit {
+export class ProjectListComponent implements OnInit, OnDestroy {
+    projectsSubscription: Subscription;
     projects: Project[] = [];
 
     selectedProject: Project;
@@ -16,7 +18,7 @@ export class ProjectListComponent implements OnInit {
     constructor(private projectService: ProjectService) { }
 
     ngOnInit() {
-        this.projects = this.projectService.getAll();
+        this.projectsSubscription = this.projectService.projects$.subscribe((data) => this.projects = data);
     }
 
     selectProject(project: Project) {
@@ -29,5 +31,9 @@ export class ProjectListComponent implements OnInit {
 
     searchProject(project: Project) {
         this.searchedProject = project;
+    }
+    
+    ngOnDestroy() {
+        this.projectsSubscription.unsubscribe();
     }
 }

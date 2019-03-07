@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { Project } from '../Project';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectService {
-  projects: Project[] = [
+  private projects: Project[] = [
       {
           id: 1,
           code: 'NHusYJl',
@@ -39,6 +40,9 @@ export class ProjectService {
           tasks: []
       },
   ];
+  
+  private projectsSubject = new BehaviorSubject<Project[]>(this.projects);
+  public projects$ = this.projectsSubject.asObservable();
 
   getAll() {
     return this.projects;

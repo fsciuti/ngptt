@@ -11,6 +11,8 @@ import { ProjectInsertComponent } from './projects/project-insert/project-insert
 import { ProjectDetailComponent } from './projects/project-detail/project-detail.component';
 import { ProjectSearchComponent } from './projects/project-search/project-search.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { NavbarComponent } from './shared/components/navbar/navbar.component';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     ProjectInsertComponent,
     ProjectDetailComponent,
     ProjectSearchComponent,
-    DashboardComponent
+    DashboardComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

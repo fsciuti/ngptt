@@ -44,6 +44,7 @@ export class ProjectListComponent {
     ];
 
     selectedProject: Project;
+    searchedProject: Project;
 
     constructor() { }
 
@@ -53,5 +54,10 @@ export class ProjectListComponent {
 
     addNewProject(project: Project) {
         this.projects.push(project);
+    }
+
+    searchProject(project: Project) {
+        console.log(project);
+        this.searchedProject = project;
     }
 }

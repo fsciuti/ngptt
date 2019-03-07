@@ -35,3 +35,18 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 - Creazione delle Interfacce *Project* e *Task*
 - Pulizia della view del componente *app.component*
 - Aggiunta della Navbar nel componente *app.component*
+
+### step-2-firstcomponent
+
+- Creazione del componente *project-list.component*
+    - Aggiunta tag in *app.component* view
+    - Attributo *projects* con array statico dei progetti
+    - Modifica view del componente con focus su:
+        - String Interpolation
+        - Event Interpolation
+        - *ngFor
+        - *ngIf
+        - ngClass
+        - DatePipe
+    - Selezione del singolo Progetto
+        - Safe Navigation Operator (?)

@@ -43,7 +43,7 @@
         </div>
     </div>
 </div>
-<p>{{selectedProject?.code}} - {{selectedProject?.name}}</p>
+<ngptt-project-detail [project]="selectedProject"></ngptt-project-detail>
 <hr/>
 <form #f="ngForm" (ngSubmit)="submitProjectForm(f)">
     <div class="form-row">

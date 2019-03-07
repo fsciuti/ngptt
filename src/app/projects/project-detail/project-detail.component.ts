@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Project } from '../../shared/Project';
 
 @Component({
   selector: 'ngptt-project-detail',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styles: []
 })
 export class ProjectDetailComponent implements OnInit {
+  @Input() project: Project;
 
   constructor() { }
 

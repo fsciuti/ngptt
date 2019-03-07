@@ -1,9 +1,16 @@
-<hr/>
-<div *ngIf="project">
-  <dl class="row">
-    <dt class="col-sm-3">Code</dt>
-    <dd class="col-sm-9">{{project?.code}}</dd>
-    <dt class="col-sm-3">Nome</dt>
-    <dd class="col-sm-9">{{project?.name}}</dd>
-  </dl>
+<div class="row mt-5 justify-content-end">
+  <div class="col-8">
+    <h2 class="">Dettagli Progetto</h2>
+  </div>
+  <div class="col text-right">
+    <button class="btn btn-link" routerLink="/projects">Torna a Progetti</button>
+  </div>
+</div>
+
+<div class="jumbotron">
+  <h1 class="display-4">{{project?.name}}</h1>
+  <p class="lead">{{project?.description}}</p>
+  <hr class="my-4">
+  <p><span>Codice: {{project?.code}} - Data Inizio: {{project?.start | date:'dd/MM/yyyy'}}</span><span
+      *ngIf="project?.end">- Data Fine: {{project?.end | date:'dd/MM/yyyy'}}</span></p>
 </div>

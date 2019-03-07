@@ -1,4 +1,15 @@
+<div class="row mt-5 justify-content-end">
+    <div class="col-8">
+        <h2 class="">I miei progetti</h2>
+    </div>
+    <div class="col text-right">
+        <button class="btn btn-primary" [routerLink]="['/projects','add']">Aggiungi Progetto</button>
+    </div>
+</div>
+<hr />
+
 <ngptt-project-search (searching)="searchProject($event)"></ngptt-project-search>
+{{searchedProject?.value}}
 <div class="card-columns">
     <div *ngFor="let project of projects
                 |  searchFilter: 'name' : searchedProject?.name 
@@ -6,17 +17,15 @@
                 |  searchFilter: 'done' : searchedProject?.done">
         <div class="card" [ngClass]="{'border-info': project.done, 'border-warning': !project.done }">
             <div class="card-body">
-                <h5 class="card-title"><span
-                        class="badge badge-light float-right">{{ project.code }}</span>{{ project.name }}</h5>
+                <h5 class="card-title"><span class="badge badge-light float-right">{{ project.code }}</span>
+                    {{ project.name }}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">
                     <small>{{ project.start | date: 'dd/MM/yyyy' }}</small>
                     <small *ngIf="project.end"> - {{ project.end | date: 'dd/MM/yyyy' }}</small>
                 </h6>
                 <p class="card-text">{{ project.description }}</p>
-                <a href="#" class="btn btn-primary btn-sm" (click)="selectProject(project)">Vai al Progetto</a>
+                <a href="#" class="btn btn-primary btn-sm" [routerLink]="['/projects','detail']">Vai al Progetto</a>
             </div>
         </div>
     </div>
 </div>
-<ngptt-project-detail [project]="selectedProject"></ngptt-project-detail>
-<ngptt-project-insert (submitted)="addProject($event)"></ngptt-project-insert>

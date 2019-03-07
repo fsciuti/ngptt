@@ -1,9 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Project } from '../../shared/Project';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, Route, ParamMap } from '@angular/router';
 import { ProjectService } from '../../shared/services/project.service';
-import { Subscription } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { Observable, Subscription } from 'rxjs';
+import { switchMap, tap } from 'rxjs/operators';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 
 @Component({
@@ -23,6 +23,7 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
   project: Project;
   projectSubscription: Subscription;
   editProjectForm: FormGroup;
+  editMode = false;
 
   constructor(private route: ActivatedRoute, private projectService: ProjectService) { }
 
@@ -77,7 +78,13 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
     (<FormArray>this.editProjectForm.get('tasks')).removeAt(index);
   }
 
+  toggleEditMode() {
+    this.editMode = !this.editMode;
+  }
+
+
   submitProjectForm() {
+    this.toggleEditMode();
   }
 
   ngOnDestroy() {

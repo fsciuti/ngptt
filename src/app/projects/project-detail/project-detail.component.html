@@ -1,20 +1,51 @@
 <ngptt-section-header [title]="'Dettaglio Progetto'" [buttonLink]="'/projects'" [buttonLabel]="'Torna a Progetti'">
 </ngptt-section-header>
 
-<div class="jumbotron">
-  <h1 class="display-4">{{project?.name}}</h1>
-  <p class="lead">{{project?.description}}</p>
-  <hr class="my-4">
-  <p><span>Codice: {{project?.code}} - Data Inizio: {{project?.start | date:'dd/MM/yyyy'}}</span><span
-      *ngIf="project?.end">- Data Fine: {{project?.end | date:'dd/MM/yyyy'}}</span></p>
+<div *ngIf="!editMode">
+  <div class="jumbotron">
+    <h1 class="display-4">{{project?.name}}</h1>
+    <p class="lead">{{project?.description}}</p>
+    <hr class="my-4">
+    <p>
+      <span>Codice: {{project?.code}} - Data Inizio: {{project?.start | date:'dd/MM/yyyy'}}</span>
+      <span *ngIf="project?.end">- Data Fine: {{project?.end | date:'dd/MM/yyyy'}}</span>
+    </p>
+    <button class="btn btn-warning btn-sm" (click)="toggleEditMode()">Modifica</button>
+  </div>
+  <table class="table table-sm" *ngIf="project.tasks.length; else notasks">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Data Inizio</th>
+        <th scope="col">Durata (minuti)</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let task of project.tasks; let i = index">
+        <th scope="row">{{ i }}</th>
+        <td>{{ task.name }}</td>
+        <td>{{ task.start | date:"dd/MM/yyyy"}}</td>
+        <td>{{ task.duration }}</td>
+        <td><span class="badge"
+            [ngClass]="{'badge-success': task.isBillable, 'badge-danger': !task.isBillable}">F</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <ng-template #notasks>
+    <div class="alert alert-warning">Nessun Task Presente</div>
+  </ng-template>
 </div>
 
-<div class="row">
+<div class="row" *ngIf="editMode">
   <div class="col">
     <form [formGroup]="editProjectForm" (ngSubmit)="submitProjectForm()">
       <div class="form-row">
         <div class="col form-group">
-          <button type="submit" class="btn btn-primary">Salva le Modifiche</button>
+          <button type="submit" class="btn btn-primary btn-sm"
+            [disabled]="!editProjectForm.valid && editProjectForm.touched">Salva le Modifiche</button>
+          <a class="btn btn-light btn-sm" (click)="toggleEditMode()">Annulla</a>
         </div>
       </div>
       <div class="form-row">

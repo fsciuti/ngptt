@@ -1,6 +1,6 @@
 <ngptt-section-header [title]="'I miei Progetti'" [buttonLink]="'/projects/add'" [buttonLabel]="'Aggiungi Progetto'" [buttonType]="'btn-primary'"></ngptt-section-header>
+<ngptt-project-insert [quickInsert]="true"></ngptt-project-insert>
 <ngptt-project-search (searching)="searchProject($event)"></ngptt-project-search>
-{{searchedProject?.value}}
 <div class="card-columns">
     <div *ngFor="let project of (projects$ | async)
                 |  searchFilter: 'name' : searchedProject?.name 

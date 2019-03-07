@@ -1,7 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 import { Project } from '../../shared/Project';
+import { ProjectService } from '../../shared/services/project.service';
 
 @Component({
   selector: 'ngptt-project-insert',
@@ -13,20 +14,21 @@ import { Project } from '../../shared/Project';
   `]
 })
 export class ProjectInsertComponent implements OnInit {
-  @Output() submitted = new EventEmitter<Project>();
+  @Input() quickInsert = false;
 
-  constructor() { }
+  constructor(private projectService: ProjectService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   submitProjectForm(form: NgForm) {
-    this.submitted.emit({
+    this.projectService.add({
         id: Symbol(),
         code: Math.random().toString(36).replace('0.', '').substring(2, 9),
         done: false,
+        start: form.value.start ? form.value.start : new Date(),
         tasks: [],
         ...form.value
     });
   }
+
 }

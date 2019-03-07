@@ -1,44 +1,70 @@
-<ngptt-section-header [title]="'Nuovo Progetto'" [buttonLink]="'/projects'" [buttonLabel]="'Torna a Progetti'"></ngptt-section-header>
-<div class="row">
-  <div class="col">
-    <form #f="ngForm" (ngSubmit)="submitProjectForm(f)">
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <input type="text" name="name" class="form-control" placeholder="Nome" required ngModel #nameField="ngModel">
-          <p class="text-danger" *ngIf="nameField.invalid && nameField.touched"><small>Il campo è
-              richiesto</small>
-          </p>
-        </div>
+<ngptt-section-header *ngIf="!quickInsert" [title]="'Nuovo Progetto'" [buttonLink]="'/projects'" [buttonLabel]="'Torna a Progetti'"></ngptt-section-header>
 
-        <div class="form-group col-md-6">
-          <select class="form-control" name="priority" required ngModel #priorityField="ngModel">
-            <option value="low">Low</option>
-            <option value="medium">Medium</option>
-            <option value="high">High</option>
-          </select>
-          <p class="text-danger" *ngIf="priorityField.invalid && priorityField.touched"><small>Il campo è
-              richiesto</small></p>
-        </div>
-      </div>
-      <div class="form-group">
-        <textarea class="form-control" name="description" placeholder="Descrizione" required ngModel
-          #descriptionField="ngModel">
-      </textarea>
-        <p class="text-danger" *ngIf="descriptionField.invalid && descriptionField.touched"><small>Il campo è
-            richiesto</small></p>
-      </div>
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <input type="date" name="start" class="form-control" placeholder="Data Inizio" required ngModel
-            #dateField="ngModel">
-          <p class="text-danger" *ngIf="dateField.invalid && dateField.touched"><small>Il campo è
-              richiesto</small>
-          </p>
-        </div>
-        <div class="form-group col-md-6">
-        </div>
-      </div>
-      <button type="submit" [disabled]="f.invalid" class="btn btn-primary">Crea</button>
-    </form>
-  </div>
+<div class="row">
+    <div class="col">
+        <form #f="ngForm" (ngSubmit)="submitProjectForm(f)">
+            <div class="form-row">
+                <div class="col-md-6" [ngClass]="{'form-group': !quickInsert}">
+                    <input 
+                        type="text" 
+                        name="name" 
+                        class="form-control" 
+                        placeholder="Nome"
+                        required
+                        ngModel
+                        #nameField="ngModel">
+                        <p class="text-danger" *ngIf="nameField.invalid && nameField.touched"><small>Il campo è richiesto</small></p>
+                </div>
+                
+                <div class="col" [ngClass]="{'form-group': !quickInsert}">
+                    <select 
+                        class="form-control" 
+                        name="priority" 
+                        required
+                        ngModel
+                        #priorityField="ngModel">
+                            <option value="low" >Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                    </select>
+                    <p class="text-danger" *ngIf="priorityField.invalid && priorityField.touched"><small>Il campo è richiesto</small></p>
+                </div>
+
+                <div class="col" *ngIf="quickInsert">
+                    <button type="submit" [disabled]="f.invalid" class="btn btn-primary">Creazione Rapida</button>
+                </div>
+            </div>
+            <div *ngIf="!quickInsert">
+                <div class="form-group">
+                    <textarea 
+                        class="form-control"
+                        name="description" 
+                        placeholder="Descrizione"
+                        required
+                        ngModel
+                        #descriptionField="ngModel">
+                    </textarea>
+                    <p class="text-danger" *ngIf="descriptionField.invalid && descriptionField.touched"><small>Il campo è richiesto</small></p>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <input 
+                            type="date"
+                            name="start" 
+                            class="form-control" 
+                            placeholder="Data Inizio"
+                            required
+                            ngModel
+                            #dateField="ngModel">
+                            <p class="text-danger" *ngIf="dateField.invalid && dateField.touched"><small>Il campo è richiesto</small></p>
+                    </div>
+                    <div class="form-group col-md-6">                
+                    </div>
+                </div>
+                <button type="submit" [disabled]="f.invalid" class="btn btn-primary" *ngIf="!quickInsert">Crea</button>
+            </div>
+        </form>
+    </div>
 </div>
+
+<hr *ngIf="quickInsert"/>

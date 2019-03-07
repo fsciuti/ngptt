@@ -17,7 +17,22 @@ export class ProjectService {
           end: new Date(2019, 3, 15),
           priority: 'medium',
           done: true,
-          tasks: []
+          tasks: [
+            {
+                'id': 1,
+                'name': 'Task di Prova',
+                'start': new Date(2018, 2, 8),
+                'duration': 10,
+                'isBillable': true
+            },
+            {
+                'id': 2,
+                'name': 'Task di Prova 2',
+                'start': new Date(2018, 2, 15),
+                'duration': 10,
+                'isBillable': true
+            } 
+          ]
       },
       {
           id: 2,

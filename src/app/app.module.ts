@@ -5,12 +5,14 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { ProjectListComponent } from './projects/project-list/project-list.component';
 import { SearchFilterPipe } from './shared/search-filter.pipe';
+import { ProjectInsertComponent } from './projects/project-insert/project-insert.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProjectListComponent,
-    SearchFilterPipe
+    SearchFilterPipe,
+    ProjectInsertComponent
   ],
   imports: [
     BrowserModule,

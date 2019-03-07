@@ -8,6 +8,7 @@ import { SearchFilterPipe } from './shared/search-filter.pipe';
 import { ProjectInsertComponent } from './projects/project-insert/project-insert.component';
 import { ProjectDetailComponent } from './projects/project-detail/project-detail.component';
 import { ProjectSearchComponent } from './projects/project-search/project-search.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ProjectSearchComponent } from './projects/project-search/project-search
     SearchFilterPipe,
     ProjectInsertComponent,
     ProjectDetailComponent,
-    ProjectSearchComponent
+    ProjectSearchComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

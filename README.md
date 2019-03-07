@@ -159,3 +159,27 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 - Modifica *project-insert* con aggiunta del router per il redirect dopo l'inserimento con focus:
     - router
     - Programmatic Navigation
+
+### step-11-reactiveform
+
+- Modifica *project-service* con task d'esempio su Array Progetti
+- Modifica *project-service* con metodo di update dei Progetti
+- Modifica *project-detail* con Reactive Update Form con focus su:
+    - FormGroup
+    - FormControl
+    - Validators
+    - formControlName
+- Modifica *project-detail* con Reactive Update Task FormArray con focus su:
+    - FormArray
+    - formArrayName
+- Modifica *project-detail* con EditMode con focus su:
+    - ng-template
+    - *ngIf (else)
+    - Property Binding ([disabled] su bottoni)
+- Modifica *project-detail* con fix sulle Date e su task.duration con focus su:
+    - DatePipe
+    - Number Field
+- Modifica *project-service* e *project-detail* con Subscription per update con focus su:
+    - Subscription
+    - OnDestroy
+    - Merge Operator

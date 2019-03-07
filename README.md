@@ -50,3 +50,9 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
         - DatePipe
     - Selezione del singolo Progetto
         - Safe Navigation Operator (?)
+
+### step-3-filterdatawithpipe
+
+- Creazione del pipe *search-filter.pipe*
+- Implementazione della ricerca via pipes nella view di *project-list.component*
+- Update del pipe *search-filter.pipe* con il controllo del tipo _boolean_

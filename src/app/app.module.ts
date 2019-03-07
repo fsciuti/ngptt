@@ -12,6 +12,7 @@ import { ProjectDetailComponent } from './projects/project-detail/project-detail
 import { ProjectSearchComponent } from './projects/project-search/project-search.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
+import { SectionHeaderComponent } from './shared/components/section-header/section-header.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
     ProjectDetailComponent,
     ProjectSearchComponent,
     DashboardComponent,
-    NavbarComponent
+    NavbarComponent,
+    SectionHeaderComponent
   ],
   imports: [
     BrowserModule,

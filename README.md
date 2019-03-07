@@ -66,3 +66,26 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
             - Form Directives _(ngModel, ngSubmit)_
             - ngModel Validity _(touched, dirty, valid, etc...)_
         - Event Interpolation
+
+### step-5-splitprojectlistcomponent
+
+- Spostati I files del componente *project-list.component* in un subfolder
+- Split della view del componente *project-list.component* in più componenti (Form Inserimento, Ricerca e Dettaglio)
+    - Modifica view del componente con focus su:
+        - Nidificazione di Componenti Child
+- Aggiunta del Componente *project-detail.component*
+    - Modifica del componente con focus su:
+        - @Input Attribute
+        - Nested Component
+        - *ngFor
+- Aggiunta del Componente *project-insert.component*
+    - Modifica del componente con focus su:
+        - @Output Attribute
+        - Event Emitter
+        - Spread Operator
+- Aggiunta del Componente *project-search.component*
+    - Modifica del componente con focus su:
+        - @ViewChild
+        - Event Emitter
+        - ElementRef
+        - Casting di <HTMLInputElement>

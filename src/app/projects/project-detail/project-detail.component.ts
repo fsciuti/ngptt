@@ -1,9 +1,9 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Project } from '../../shared/Project';
-import { ActivatedRoute, Route, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ProjectService } from '../../shared/services/project.service';
-import { Observable, Subscription } from 'rxjs';
-import { switchMap, tap } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 
 @Component({
@@ -20,7 +20,7 @@ import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
   `]
 })
 export class ProjectDetailComponent implements OnInit, OnDestroy {
-  @Input() project: Project;
+  project: Project;
   projectSubscription: Subscription;
   editProjectForm: FormGroup;
 

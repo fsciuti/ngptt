@@ -1,1 +1,16 @@
-<p>project-list works!</p>
+<div class="card-columns">
+    <div *ngFor="let project of projects">
+        <div class="card" [ngClass]="{'border-info': project.done, 'border-warning': !project.done }">
+            <div class="card-body">
+                <h5 class="card-title"><span class="badge badge-light float-right">{{ project.code }}</span>
+                    {{ project.name }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">
+                    <small>{{ project.start | date: 'dd/MM/yyyy' }}</small>
+                    <small *ngIf="project.end"> - {{ project.end | date: 'dd/MM/yyyy' }}</small>
+                </h6>
+                <p class="card-text">{{ project.description }}</p>
+                <a href="#" class="btn btn-primary btn-sm">Vai al Progetto</a>
+            </div>
+        </div>
+    </div>
+</div>

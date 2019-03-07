@@ -89,3 +89,11 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
         - Event Emitter
         - ElementRef
         - Casting di <HTMLInputElement>
+
+### step-6-dataservice
+
+- Aggiunta del s Data Service *project.service* con focus su:
+    - @Injectable _(providedIn)_
+    - Service
+- Modifica del *project-list.component* con focus su:
+    - Dependency Injection

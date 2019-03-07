@@ -55,6 +55,42 @@
           </div>
         </div>
       </div>
+      <hr />
+      <div formArrayName="tasks">
+        <div class="row">
+          <div class="col">
+            <h4>Tasks</h4>
+          </div>
+          <div class="col text-right">
+            <button class="btn btn-light btn-sm" (click)="onAddTask()" [disabled]="!editProjectForm.valid">Aggiungi
+              Task</button>
+          </div>
+        </div>
+        <hr />
+        <div class="form-row align-items-center"
+          *ngFor="let taskControl of editProjectForm.get('tasks').controls; let i = index" [formGroupName]="i">
+          <div class="col">
+            <input type="text" class="form-control" formControlName="name">
+          </div>
+          <div class="col">
+            <input type="date" class="form-control" formControlName="start">
+          </div>
+          <div class="col">
+            <input type="text" class="form-control" formControlName="duration">
+          </div>
+          <div class="col-auto">
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" formControlName="isBillable">
+              <label class="form-check-label" for="exampleCheck1">Fatturabile</label>
+            </div>
+          </div>
+          <div class="col-auto">
+            <div class="form-check">
+              <span class="badge badge-danger" (click)="onDeleteTask(i)">x</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </form>
   </div>
 </div>

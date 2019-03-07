@@ -1,3 +1,26 @@
-<p>
-  project-search works!
-</p>
+<div>
+  <h2>I miei progetti</h2>
+  <hr />
+  <div class="row">
+      <div class="col">
+          <input class="form-control" name="projectName" placeholder="cerca progetto" (input)='search()'
+              #filterName />
+      </div>
+      <div class="col">
+          <select class="form-control" #filterPriority (input)='search()'>
+              <option></option>
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+          </select>
+      </div>
+      <div class="col">
+          <select class="form-control" #filterDone (input)='search()'>
+              <option></option>
+              <option value="true">Done</option>
+              <option value="false">In progress</option>
+          </select>
+      </div>
+  </div>
+</div>
+<hr />

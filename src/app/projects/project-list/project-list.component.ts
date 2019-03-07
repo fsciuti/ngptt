@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
-import { Project } from '../shared/Project';
+import { Project } from '../../shared/Project';
 
 @Component({
     selector: 'ngptt-project-list',

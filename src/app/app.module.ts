@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { ProjectListComponent } from './projects/project-list.component';
+import { ProjectListComponent } from './projects/project-list/project-list.component';
 import { SearchFilterPipe } from './shared/search-filter.pipe';
 
 @NgModule({

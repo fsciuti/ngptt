@@ -44,16 +44,12 @@ export class ProjectService {
   private projectsSubject = new BehaviorSubject<Project[]>(this.projects);
   public projects$ = this.projectsSubject.asObservable();
 
-  getAll() {
-    return this.projects;
-  }
-
   add(project: Project) {
       this.projects.push(project);
+      this.projectsSubject.next(this.projects.slice());
   }
 
   get(id: number): Project | null {
       return {...this.projects.find(project => project.id === id)};
   }
-
 }

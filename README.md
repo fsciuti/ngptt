@@ -115,3 +115,10 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
     - router-outlet
 - Modifica Navigazione tra i Path di *project-list.component*, *project-detail.component*, *project-insert.component* con focus su:
     - routerLink
+
+### step-8-projectnavheadercomponent
+
+- Aggiunta del Componente section-header con focus su:
+    - @Input Attribute
+    - Nested Component
+    - ngClass

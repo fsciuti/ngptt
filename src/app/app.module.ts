@@ -7,6 +7,7 @@ import { ProjectListComponent } from './projects/project-list/project-list.compo
 import { SearchFilterPipe } from './shared/search-filter.pipe';
 import { ProjectInsertComponent } from './projects/project-insert/project-insert.component';
 import { ProjectDetailComponent } from './projects/project-detail/project-detail.component';
+import { ProjectSearchComponent } from './projects/project-search/project-search.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { ProjectDetailComponent } from './projects/project-detail/project-detail
     ProjectListComponent,
     SearchFilterPipe,
     ProjectInsertComponent,
-    ProjectDetailComponent
+    ProjectDetailComponent,
+    ProjectSearchComponent
   ],
   imports: [
     BrowserModule,

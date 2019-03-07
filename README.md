@@ -25,3 +25,13 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Branches
+
+### step-1-setup
+
+- Creazione Progetto `ng new ngptt -p='ngptt'` (No Routing / CSS Styles)
+- Installazione Bootstrap `npm install bootstrap --save`
+- Creazione delle Interfacce *Project* e *Task*
+- Pulizia della view del componente *app.component*
+- Aggiunta della Navbar nel componente *app.component*

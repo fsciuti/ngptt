@@ -145,3 +145,17 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
     - Async Pipe
     - NgDestroy
     - Subject Unsubcription
+
+### step-10-morerouting
+
+- Aggiunta regola di routing con parametri per *project-detail.component* con focus su:
+    - Ruoute Parameters
+- Modifica di *project-detail.component* con get del parametro di routing per identificazione Progetto con focus su:
+    - ActivatedRoute
+- Modifica *project-service* con rename del metodo getSelectedProject in getProject
+- Modifica *project-list* view con aggiunta del parametro di routing per link a Dettaglio Progetto con focus su:
+    - routerLink
+- Modifica del metodo *addProject* di *project-service* con return del progetto creato
+- Modifica *project-insert* con aggiunta del router per il redirect dopo l'inserimento con focus:
+    - router
+    - Programmatic Navigation

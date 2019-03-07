@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 
 import { Project } from '../../shared/Project';
 import { ProjectService } from '../../shared/services/project.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ngptt-project-insert',
@@ -16,9 +17,10 @@ import { ProjectService } from '../../shared/services/project.service';
 export class ProjectInsertComponent implements OnInit {
   @Input() quickInsert = false;
 
-  constructor(private projectService: ProjectService) { }
+  constructor(private projectService: ProjectService, private router: Router) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   submitProjectForm(form: NgForm) {
     this.projectService.add({
@@ -29,6 +31,7 @@ export class ProjectInsertComponent implements OnInit {
         tasks: [],
         ...form.value
     });
-  }
 
+    this.router.navigate(['/projects']);
+  }
 }

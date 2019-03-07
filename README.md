@@ -97,3 +97,21 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
     - Service
 - Modifica del *project-list.component* con focus su:
     - Dependency Injection
+
+### step-7-routing
+
+- Aggiunta dell'App Routing Module con focus su:
+    - Routes
+    - RouterModule
+    - Imports/Exports
+- Modifica dell'App Module con focus su:
+    - Imports
+- Aggiunta del Componente *dashboard*
+- Aggiunta del Componente *navbar* con focus su:
+    - routerLinkActive
+    - routerLinkActiveOptions
+    - routerLink
+- Modifica di *project-list.component* con focus su:
+    - router-outlet
+- Modifica Navigazione tra i Path di *project-list.component*, *project-detail.component*, *project-insert.component* con focus su:
+    - routerLink

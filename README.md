@@ -56,3 +56,13 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 - Creazione del pipe *search-filter.pipe*
 - Implementazione della ricerca via pipes nella view di *project-list.component*
 - Update del pipe *search-filter.pipe* con il controllo del tipo _boolean_
+
+### step-4-formaddproject
+
+- Implementazione sulla view del componente *project-list.component* del form di inserimento nuovo progetto
+    - Modifica view del componente con focus su:
+        - Template Driven Forms
+            - Template Reference Variables _(#f='ngForm')_
+            - Form Directives _(ngModel, ngSubmit)_
+            - ngModel Validity _(touched, dirty, valid, etc...)_
+        - Event Interpolation

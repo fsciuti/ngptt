@@ -2,10 +2,11 @@ import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Project } from '../../shared/Project';
 import { ActivatedRoute, Route, ParamMap } from '@angular/router';
 import { ProjectService } from '../../shared/services/project.service';
-import { Observable, Subscription } from 'rxjs';
-import { switchMap, tap } from 'rxjs/operators';
+import { Subscription, merge } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'ngptt-project-detail',
   templateUrl: './project-detail.component.html',
@@ -28,8 +29,11 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute, private projectService: ProjectService) { }
 
   ngOnInit() {
-    this.projectSubscription = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) => this.projectService.get(params.get('code'))),
+    this.projectSubscription = merge(
+      this.route.paramMap.pipe(
+        switchMap((params: ParamMap) => this.projectService.get(params.get('code'))),
+      ),
+      this.projectService.project$
     ).subscribe((project) => {
       this.project = project;
       this.initForm();
@@ -37,14 +41,16 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
   }
 
   initForm() {
+    const datePipe = new DatePipe('en-US');
+
     const projectTasks = new FormArray([]);
     if (this.project.tasks) {
       for (const task of this.project.tasks) {
         projectTasks.push(
           new FormGroup({
             'name': new FormControl(task.name, Validators.required),
-            'start': new FormControl(new Date(task.start), Validators.required),
-            'duration': new FormControl(task.duration),
+            'start': new FormControl(datePipe.transform(task.start, 'yyyy-MM-dd'), Validators.required),
+            'duration': new FormControl(task.duration, Validators.required),
             'isBillable': new FormControl(task.isBillable)
           })
         );
@@ -56,8 +62,8 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
       'name': new FormControl(this.project.name, Validators.required),
       'description': new FormControl(this.project.description),
       'priority': new FormControl(this.project.priority, Validators.required),
-      'start': new FormControl(this.project.start),
-      'end': new FormControl(this.project.end),
+      'start': new FormControl(datePipe.transform(this.project.start, 'yyyy-MM-dd'), Validators.required),
+      'end': new FormControl(datePipe.transform(this.project.end, 'yyyy-MM-dd')),
       'tasks': projectTasks
     });
   }
@@ -82,8 +88,8 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
     this.editMode = !this.editMode;
   }
 
-
   submitProjectForm() {
+    this.projectService.update(this.editProjectForm.value);
     this.toggleEditMode();
   }
 

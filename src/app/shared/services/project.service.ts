@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Project } from '../Project';
 
 @Injectable({
@@ -49,7 +50,9 @@ export class ProjectService {
       this.projectsSubject.next(this.projects.slice());
   }
 
-  get(id: number): Project | null {
-      return {...this.projects.find(project => project.id === id)};
-  }
+  get(code: string) {
+        return this.projects$.pipe(
+            map((projects: Project[]) => projects.find(project => project.code === code))
+        );
+    }
 }

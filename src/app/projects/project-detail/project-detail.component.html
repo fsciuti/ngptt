@@ -1,5 +1,5 @@
 <ngptt-section-header [title]="'Dettaglio Progetto'" [buttonLink]="'/projects'" [buttonLabel]="'Torna a Progetti'"></ngptt-section-header>
-<div class="jumbotron">
+<div class="jumbotron" *ngIf="project$ | async as project">
   <h1 class="display-4">{{project?.name}}</h1>
   <p class="lead">{{project?.description}}</p>
   <hr class="my-4">

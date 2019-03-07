@@ -122,3 +122,26 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
     - @Input Attribute
     - Nested Component
     - ngClass
+
+### step-9-bereactive
+
+- Aggiunto Subject in *project-service* con focus su:
+    - Subject
+    - Subscription
+- Modifica di *project-insert.component* per Quick Insert con focus su:
+    - @Input
+    - *ngIf
+    - ngClass
+- Modifica di *project-list.component* per Quick Insert con focus su:
+    - Nested Component
+- Modifica di *project-list.component* e *project-insert.component* con rimozione EventEmitter e utilizzo del Project Service con focus su:
+    - Dependency Injection
+    - Subject
+    - Subscription
+- Modifica di *project-list.component* per cancellazione Subscription con focus su:
+    - NgDestroy
+    - Subject Unsubcription
+- Modifica di *project-list.component* per utilizzo di _async_ pipe con focus su:
+    - Async Pipe
+    - NgDestroy
+    - Subject Unsubcription

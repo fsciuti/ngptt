@@ -10,7 +10,7 @@
       <span>Codice: {{project?.code}} - Data Inizio: {{project?.start | date:'dd/MM/yyyy'}}</span>
       <span *ngIf="project?.end">- Data Fine: {{project?.end | date:'dd/MM/yyyy'}}</span>
     </p>
-    <button class="btn btn-warning btn-sm">Modifica</button>
+    <button class="btn btn-warning btn-sm" routerLink="/projects/update/{{project.id}}">Modifica</button>
   </div>
   <table class="table table-sm" *ngIf="project.tasks?.length; else notasks">
     <thead>

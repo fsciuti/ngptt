@@ -1,7 +1,7 @@
 <ngptt-section-header [title]="'Dettaglio Progetto'" [buttonLink]="'/projects'" [buttonLabel]="'Torna a Progetti'">
 </ngptt-section-header>
 
-<div *ngIf="!editMode">
+<div *ngIf="project$ | async as project">
   <div class="jumbotron">
     <h1 class="display-4">{{project?.name}}</h1>
     <p class="lead">{{project?.description}}</p>
@@ -10,9 +10,9 @@
       <span>Codice: {{project?.code}} - Data Inizio: {{project?.start | date:'dd/MM/yyyy'}}</span>
       <span *ngIf="project?.end">- Data Fine: {{project?.end | date:'dd/MM/yyyy'}}</span>
     </p>
-    <button class="btn btn-warning btn-sm" (click)="toggleEditMode()">Modifica</button>
+    <button class="btn btn-warning btn-sm">Modifica</button>
   </div>
-  <table class="table table-sm" *ngIf="project.tasks.length; else notasks">
+  <table class="table table-sm" *ngIf="project.tasks?.length; else notasks">
     <thead>
       <tr>
         <th scope="col">#</th>
@@ -36,92 +36,4 @@
   <ng-template #notasks>
     <div class="alert alert-warning">Nessun Task Presente</div>
   </ng-template>
-</div>
-
-<div class="row" *ngIf="editMode">
-  <div class="col">
-    <form [formGroup]="editProjectForm" (ngSubmit)="submitProjectForm()">
-      <div class="form-row">
-        <div class="col form-group">
-          <button type="submit" class="btn btn-primary btn-sm"
-            [disabled]="!editProjectForm.valid && editProjectForm.touched">Salva le Modifiche</button>
-          <a class="btn btn-light btn-sm" (click)="toggleEditMode()">Annulla</a>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="col form-group">
-          <input type="text" class="form-control" placeholder="Code" formControlName="code" disabled>
-          <p class="text-danger" *ngIf="editProjectForm.get('code').invalid && editProjectForm.get('code').touched">
-            <small>Il campo è richiesto</small></p>
-        </div>
-        <div class="col-md-6 form-group">
-          <input type="text" class="form-control" placeholder="Nome" formControlName="name">
-          <p class="text-danger" *ngIf="editProjectForm.get('name').invalid && editProjectForm.get('name').touched">
-            <small>Il campo è richiesto</small></p>
-        </div>
-        <div class="col form-group">
-          <select class="form-control" formControlName="priority">
-            <option value="low">Low</option>
-            <option value="medium">Medium</option>
-            <option value="high">High</option>
-          </select>
-          <p class="text-danger"
-            *ngIf="editProjectForm.get('priority').invalid && editProjectForm.get('priority').touched"><small>Il campo è
-              richiesto</small></p>
-        </div>
-      </div>
-      <div>
-        <div class="form-group">
-          <textarea class="form-control" placeholder="Descrizione" formControlName="description">
-                </textarea>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <input type="date" class="form-control" placeholder="Data Inizio" formControlName="start">
-            <p class="text-danger" *ngIf="editProjectForm.get('start').invalid && editProjectForm.get('start').touched">
-              <small>Il campo è richiesto</small></p>
-          </div>
-          <div class="form-group col-md-6">
-            <input type="date" class="form-control" placeholder="Data Fine" formControlName="end">
-          </div>
-        </div>
-      </div>
-      <hr />
-      <div formArrayName="tasks">
-        <div class="row">
-          <div class="col">
-            <h4>Tasks</h4>
-          </div>
-          <div class="col text-right">
-            <button class="btn btn-light btn-sm" (click)="onAddTask()" [disabled]="!editProjectForm.valid">Aggiungi
-              Task</button>
-          </div>
-        </div>
-        <hr />
-        <div class="form-row align-items-center"
-          *ngFor="let taskControl of editProjectForm.get('tasks').controls; let i = index" [formGroupName]="i">
-          <div class="col">
-            <input type="text" class="form-control" formControlName="name">
-          </div>
-          <div class="col">
-            <input type="date" class="form-control" formControlName="start">
-          </div>
-          <div class="col">
-            <input type="number" class="form-control" formControlName="duration">
-          </div>
-          <div class="col-auto">
-            <div class="form-check">
-              <input type="checkbox" class="form-check-input" formControlName="isBillable">
-              <label class="form-check-label" for="exampleCheck1">Fatturabile</label>
-            </div>
-          </div>
-          <div class="col-auto">
-            <div class="form-check">
-              <span class="badge badge-danger" (click)="onDeleteTask(i)">x</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </form>
-  </div>
 </div>

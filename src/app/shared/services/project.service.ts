@@ -1,81 +1,57 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { Project } from '../Project';
+import { BehaviorSubject, Subject, Observable, of } from 'rxjs';
+import { map, catchError, tap } from 'rxjs/operators';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class ProjectService {
-    private projects: Project[] = [
-        {
-            id: 1,
-            code: 'NHusYJl',
-            name: 'Progetto Alpha',
-            description: 'Lorem ipsum dolor sit amet.',
-            start: new Date(2019, 1, 31),
-            end: new Date(2019, 3, 15),
-            priority: 'medium',
-            done: true,
-            tasks: [
-                {
-                    'id': 1,
-                    'name': 'Task di Prova',
-                    'start': new Date(2018, 2, 8),
-                    'duration': 10,
-                    'isBillable': true
-                },
-                {
-                    'id': 2,
-                    'name': 'Task di Prova 2',
-                    'start': new Date(2018, 2, 15),
-                    'duration': 10,
-                    'isBillable': true
-                }
-            ]
-        },
-        {
-            id: 2,
-            code: 'SJieYKl',
-            name: 'Progetto Beta',
-            description: 'Lorem ipsum dolor sit amet.',
-            start: new Date(2019, 3, 31),
-            end: new Date(2019, 6, 15),
-            priority: 'low',
-            done: true,
-            tasks: []
-        },
-        {
-            id: 3,
-            code: 'POjeGBs',
-            name: 'Progetto Gamma',
-            description: 'Lorem ipsum dolor sit amet.',
-            start: new Date(2019, 8, 15),
-            priority: 'low',
-            done: false,
-            tasks: []
-        },
-    ];
+  private projectSubject = new Subject<Project>();
+  public project$ = this.projectSubject.asObservable();
 
-    private projectsSubject = new BehaviorSubject<Project[]>(this.projects);
-    private projectSubject = new Subject<Project>();
-    public projects$ = this.projectsSubject.asObservable();
-    public project$ = this.projectSubject.asObservable();
+  private projectsUrl = 'api/projects';
+  
+  constructor(private http: HttpClient) {}
 
-    add(project: Project) {
-        this.projects.push(project);
-        this.projectsSubject.next(this.projects.slice());
-    }
+  add(project: Project) {
+      return this.http.post<Project>(this.projectsUrl, project, httpOptions).pipe(
+        tap((newProject: Project) => console.log(`added project w/ id=${newProject.id}`)),
+        catchError(this.handleError<Project>('addProject'))
+      );
+  }
 
-    get(code: string) {
-        return this.projects$.pipe(
-            map((projects: Project[]) => projects.find(project => project.code === code))
-        );
-    }
+  getAll() {
+    return this.http.get<Project[]>(this.projectsUrl)
+      .pipe(
+        catchError(this.handleError('getProjects', []))
+      );
+  }
 
-    update(project: Project) {
-        const projectToUpdate: number = this.projects.map(project => project.code).indexOf(project.code);
-        this.projects[projectToUpdate] = project;
-        this.projectSubject.next({ ...this.projects[projectToUpdate] });
-    }
+  get(id: string | number) {
+    const url = `${this.projectsUrl}/${id}`;
+    return this.http.get<Project>(url).pipe(
+      tap(_ => console.log(`fetched project id=${id}`)),
+      catchError(this.handleError<Project>(`getProject id=${id}`))
+    );
+  }
+
+  update(project: Project) {
+    return this.http.put(this.projectsUrl, project, httpOptions).pipe(
+      tap(_ => console.log(`updated project id=${project.id}`)),
+      catchError(this.handleError<any>('updateProject'))
+    );
+  }
+
+  private handleError<T> (operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error);
+      console.log(`${operation} failed: ${error.message}`);
+      return of(result as T);
+    };
+  }
 }

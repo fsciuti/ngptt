@@ -183,3 +183,23 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
     - Subscription
     - OnDestroy
     - Merge Operator
+
+
+### step-12-httpclient
+
+- Aggiunto alle dipendenze di sviluppo il package *json-server* ed il relativo file *db.json* con focus su:
+    - In-Memory-Web-API
+    - package.json (per dipendenze dev e script)
+- Modifica *app.module* con aggiunta di HttpClientModule
+- Modifica *project.service* con focus su:
+    - HttpClientModule
+- Modifica *project-list.component* con focus su:
+    - Observable
+    - Async Pipe
+- Modifica *project-detail.component* con focus su:
+    - Subscription
+- Modifica *project-insert.component* con focus su:
+    - Subscription
+- Aggiunto *project-update.component* con focus su:
+    - Subscription
+    - Single Responsibility Principle

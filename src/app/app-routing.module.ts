@@ -7,7 +7,7 @@ import { ProjectInsertComponent } from './projects/project-insert/project-insert
 import { ProjectDetailComponent } from './projects/project-detail/project-detail.component';
 
 const routes: Routes = [
-    { path: 'projects/detail/:code', component: ProjectDetailComponent },
+    { path: 'projects/detail/:id', component: ProjectDetailComponent },
     { path: 'projects/add', component: ProjectInsertComponent },
     { path: 'projects', component: ProjectListComponent },
     { path: 'dashboard', component: DashboardComponent },

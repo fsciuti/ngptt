@@ -1,7 +1,7 @@
 ## mock data
 ```
 {
-          id: Symbol(),
+          id: 1,
           code: 'NHusYJl',
           name: 'Progetto Alpha',
           description: 'Lorem ipsum dolor sit amet.',
@@ -12,7 +12,7 @@
           tasks: []
       },
       {
-          id: Symbol(),
+          id: 2,
           code: 'SJieYKl',
           name: 'Progetto Beta',
           description: 'Lorem ipsum dolor sit amet.',
@@ -23,7 +23,7 @@
           tasks: []
       },
       {
-          id: Symbol(),
+          id: 3,
           code: 'POjeGBs',
           name: 'Progetto Gamma',
           description: 'Lorem ipsum dolor sit amet.',
@@ -76,7 +76,7 @@
 ```
 <div class="card-columns">
     <div>
-        <div class="card"">
+        <div class="card">
             <div class="card-body">
                 <h5 class="card-title"><span class="badge badge-light float-right">Codice</span> Nome Progetto</h5>
                 <h6 class="card-subtitle mb-2 text-muted">
@@ -122,6 +122,29 @@
 </div>
 <hr />
   ```
+
+#### search-filter.pipe.ts
+```
+import { Pipe, PipeTransform } from '@angular/core';
+
+@Pipe({
+  name: 'searchFilter'
+})
+export class SearchFilterPipe implements PipeTransform {
+  transform(items: any[], field: string, value: string): any[] {
+    if (!value) { return items; }
+    if (!items) { return []; }
+
+    return items.filter(it => {
+      if (typeof (it[field]) !== 'boolean') {
+        return it[field].toLowerCase().includes(value.toLowerCase());
+      } else {
+        return (it[field]) === (value === 'true');
+      }
+    });
+  }
+}
+```
 
 ## step-4-formaddproject
 #### project-list.component.html
